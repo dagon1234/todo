@@ -26,7 +26,7 @@ export class AppComponent {
 
   get items(): readonly TodoItem[] {
     //return this.list.items.filter((item) => !item.complete);
-    return this.list.items.filter(item => this.showComplete || !item.complete);
+    return this.list.items.filter(item => this.showComplete || !item.complete || item.complete);
   }
 
   addItem(newItem: string) {
@@ -34,4 +34,12 @@ export class AppComponent {
       this.list.addItem(newItem);
     }
   }
+
+  deleteItem(todo: TodoItem): void {
+    const index = this.list.items.indexOf(todo);
+    if (index !== -1) {
+      this.list.items.splice(index, 1);
+    }
+  }
+  
 }

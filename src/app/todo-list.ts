@@ -1,10 +1,9 @@
 import { TodoItem } from './todo-item';
 
 export class TodoList {
-  constructor(public user: string, private todoItems: TodoItem[] = []) {
-    // no statements required
+  constructor(public user: string, public todoItems: TodoItem[] = []) {
   }
-  get items(): readonly TodoItem[] {
+  get items(): TodoItem[] {
     return this.todoItems;
   }
   addItem(task: string) {
