@@ -14,4 +14,10 @@ export class TodoList {
   addItem(task: string) {
     this._items.push(new TodoItem(task));
   }
+
+  deleteItem(index: number) {
+    if (index >= 0 && index < this._items.length) {
+      this._items.splice(index, 1);
+    }
+  }
 }

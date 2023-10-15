@@ -41,8 +41,9 @@ export class AppComponent implements OnInit{
       localStorage.setItem('todoListData', JSON.stringify(this.list.items));
     }
   }
-  
-  deleteItem(todo: any) {
-    
+
+  deleteItem(index: number) {
+    this.list.deleteItem(index);
+    localStorage.setItem('todoListData', JSON.stringify(this.list.items));
   }
 }
