@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+Phawat Phungdecha
+import { Component, OnInit } from '@angular/core';
 import { TodoItem } from './todo-item';
 import { TodoList } from './todo-list';
 
@@ -7,14 +8,20 @@ import { TodoList } from './todo-list';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   private list = new TodoList('Bob', [
     new TodoItem('Go for run', true),
     new TodoItem('Get flowers'),
     new TodoItem('Collect tickets'),
   ]);
-
   showComplete = false;
+
+  ngOnInit() {
+    const storedData = localStorage.getItem('todoListData');
+    if (storedData) {
+      this.list = new TodoList('Bob', JSON.parse(storedData));
+    }
+  }
 
   get username(): string {
     return this.list.user;
@@ -30,8 +37,10 @@ export class AppComponent {
   }
 
   addItem(newItem: string) {
-    if (newItem != '') {
+    if (newItem !== '') {
       this.list.addItem(newItem);
+      // Save data to local storage after adding an item
+      localStorage.setItem('todoListData', JSON.stringify(this.list.items));
     }
   }
 }

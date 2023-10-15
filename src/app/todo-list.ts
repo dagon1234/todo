@@ -1,16 +1,17 @@
 import { TodoItem } from './todo-item';
 
 export class TodoList {
-  constructor(public user: string, private todoItems: TodoItem[] = []) {
-    // no statements required
+  private _items: TodoItem[] = [];
+
+  constructor(public user: string, items: TodoItem[] = []) {
+    this._items = items;
   }
+
   get items(): readonly TodoItem[] {
-    return this.todoItems;
+    return this._items;
   }
+
   addItem(task: string) {
-    this.todoItems.push(new TodoItem(task));
+    this._items.push(new TodoItem(task));
   }
 }
-
-let list = new TodoList('aa',[])
-list.items
