@@ -1,4 +1,3 @@
-Phawat Phungdecha
 import { Component, OnInit } from '@angular/core';
 import { TodoItem } from './todo-item';
 import { TodoList } from './todo-list';
@@ -32,15 +31,18 @@ export class AppComponent implements OnInit{
   }
 
   get items(): readonly TodoItem[] {
-    //return this.list.items.filter((item) => !item.complete);
-    return this.list.items.filter(item => this.showComplete || !item.complete);
+    localStorage.setItem('todoListData', JSON.stringify(this.list.items));
+    return this.list.items.filter(item => this.showComplete || !item.complete || item.complete);
   }
 
   addItem(newItem: string) {
     if (newItem !== '') {
       this.list.addItem(newItem);
-      // Save data to local storage after adding an item
       localStorage.setItem('todoListData', JSON.stringify(this.list.items));
     }
+  }
+  
+  deleteItem(todo: any) {
+    
   }
 }
