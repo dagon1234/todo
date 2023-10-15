@@ -1,19 +1,100 @@
+.mat-toolbar {
+  background-color: #1976D2; /* Primary color background */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Elevation effect */
+  display: flex;
+  justify-content: space-between; /* Centering title and spacers */
+  align-items: center;
+  padding: 0 15px; /* Add padding to the toolbar */
+}
+
+/* Spacers */
 .spacer {
-    flex: 1 1 auto;
-  }
-  .tableContainer {
-    padding: 15px;
-  }
-  .fullWidth {
-    width: 100%;
-  }
-  .inputContainer {
-    margin: 15px 15px 5px;
-  }
-  .addButton {
-    margin: 5px;
-  }
-  .toggleContainer {
-    margin: 15px;
-    display: flex;
-  }
+  flex: 1; /* Flex to take up available space */
+}
+
+/* Input Container */
+.inputContainer {
+  margin: 15px; /* Add margin around the input container */
+}
+
+/* Form Field */
+.fullWidth {
+  width: 100%; /* Full width for the form field */
+}
+
+/* Label for New To Do */
+.mat-label {
+  padding-left: 5px; /* Add left padding to the label */
+}
+
+/* Add Button */
+.addButton {
+  margin: 5px; /* Add margin to the button */
+}
+
+/* Item List */
+.item-list {
+  margin: 15px; /* Add margin around the item list */
+}
+
+/* To-Do Item */
+.item {
+  display: flex;
+  align-items: center;
+  padding: 10px; /* Add padding to each to-do item */
+  border: 1px solid #ccc; /* Add a border for separation */
+  margin-bottom: 50px; /* Space between items */
+}
+
+/* Task Description */
+.box-task {
+  flex: 1; /* Take up available space */
+  font-weight: bold;
+  margin-left: 20px;
+  background-color: #1976D2;
+  padding: 10px;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+.task{
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Time */
+.box-time {
+  margin-right: 20px;
+  background-color: #1976D2;
+  padding: 10px;
+  border-radius: 10px;
+}
+.time{
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Done Checkbox */
+.done {
+  margin-right: 10px; /* Add margin to the right of the checkbox */
+}
+
+/* Container for the Delete Button */
+.delete {
+  position: relative; /* Make it a reference position for the button */
+  text-align: center;
+  margin-top: -115px;
+  margin-right: -11px;
+}
+
+/* Delete Button */
+.delete button {
+  background-color: #f44336;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute; /* Position absolutely within the relative container */
+  top: 0; /* Position the button at the top of the container */
+  right: 0; /* Optionally, you can add right: 0 to position it on the right */
+}
