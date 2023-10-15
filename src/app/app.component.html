@@ -1,59 +1,17 @@
-<mat-toolbar color="primary" class="mat-elevation-z3">
-  <span class="spacer"></span>
-
-  <span>{{ username }}'s To Do List</span>
-
-  <span class="spacer"></span>
-
-</mat-toolbar>
-
-<div class="inputContainer">
-  <mat-form-field class="fullWidth">
-    <mat-label style="padding-left: 5px">New To Do</mat-label>
-    <input
-      matInput
-      placeholder="Enter to-do description"
-      #todoText
-      (keyup.enter)="addItem(todoText.value); todoText.value = ''"
-    />
-    <button
-      matSuffix
-      mat-raised-button
-      color="accent"
-      class="addButton"
-      (click)="addItem(todoText.value); todoText.value = ''"
-    >
-      Add
-    </button>
-  </mat-form-field>
-</div>
-
-<div class="tableContainer">
-  <table mat-table [dataSource]="items" class="mat-elevation-z3 fullWidth">
-
-    <ng-container matColumnDef="task">
-      <th mat-header-cell *matHeaderCellDef>Task</th>
-      <td mat-cell *matCellDef="let todo">{{ todo.task }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="done">
-      <th mat-header-cell *matHeaderCellDef>Done</th>
-      <td mat-cell *matCellDef="let todo">
-        <mat-checkbox [(ngModel)]="todo.complete" color="primary">
-        </mat-checkbox>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef>Delete</th>
-      <td mat-cell *matCellDef="let todo">
-        <button mat-icon-button (click)="deleteItem(todo)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="[ 'task', 'done', 'delete']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['task', 'done', 'delete']"></tr>
-  </table>
+<div>
+  <div>
+    <input type="text" placeholder="Add a new task" [(ngModel)]="newTask" (keyup.enter)="addItem(newTask)" />
+    <button (click)="addItem(newTask)">Add</button>
+  </div>
+  
+  <div>
+    <ul>
+      <li *ngFor="let item of items">
+        <input type="checkbox" [(ngModel)]="item.doneItem" />
+        {{ item.taskItem }}
+        {{ item.timeItem | date }}
+        <button (click)="deleteItem(item)">Delete</button>
+      </li>
+    </ul>
+  </div>
 </div>

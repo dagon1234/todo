@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { TodoItem } from './todo-item';
-import { TodoList } from './todo-list';
+import { tododata } from './data/todo';
+import { TodoList } from './todolist';
+import { TodoItem } from './models/todo';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,12 @@ import { TodoList } from './todo-list';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  private list = new TodoList('Bob', [
-    new TodoItem('Go for run', true),
-    new TodoItem('Get flowers'),
-    new TodoItem('Collect tickets'),
-  ]);
+  private list: TodoList;
+  newTask: string = '';
+
+  constructor() {
+    this.list = new TodoList(tododata[0].user, tododata[0].items);
+  }
 
   showComplete = false;
 
@@ -21,25 +23,24 @@ export class AppComponent {
   }
 
   get itemCount(): number {
-    return this.list.items.filter((item) => !item.complete).length;
+    return this.list.items.filter((item) => !item.doneItem).length;
   }
 
   get items(): readonly TodoItem[] {
-    //return this.list.items.filter((item) => !item.complete);
-    return this.list.items.filter(item => this.showComplete || !item.complete || item.complete);
+    return this.list.items.filter(
+      (item) => this.showComplete || !item.doneItem || item.doneItem
+    );
   }
 
-  addItem(newItem: string) {
-    if (newItem != '') {
-      this.list.addItem(newItem);
+  addItem(newItem: string): void {
+    if (newItem !== '') {
+      const time = new Date();
+      this.list.addItem(newItem, time);
+      this.newTask = '';
     }
   }
 
   deleteItem(todo: TodoItem): void {
-    const index = this.list.items.indexOf(todo);
-    if (index !== -1) {
-      this.list.items.splice(index, 1);
-    }
+    this.list.deleteItem(todo);
   }
-  
 }
