@@ -18,14 +18,6 @@ export class AppComponent implements OnInit{
     }
   }
 
-  get username(): string {
-    return this.list.user;
-  }
-
-  get itemCount(): number {
-    return this.list.items.filter((item) => !item.complete).length;
-  }
-
   get items(): readonly TodoItem[] {
     localStorage.setItem('todoListData', JSON.stringify(this.list.items));
     return this.list.items.filter(item => this.showComplete || !item.complete || item.complete);
