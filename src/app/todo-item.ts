@@ -1,3 +1,3 @@
 export class TodoItem {
-    constructor(public task: string, public complete: boolean = false) {}
+    constructor(public task: string, public complete: boolean = false, public time: Date) {}
 }

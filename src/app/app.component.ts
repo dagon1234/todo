@@ -8,11 +8,7 @@ import { TodoList } from './todo-list';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit{
-  private list = new TodoList('Bob', [
-    new TodoItem('Go for run', true),
-    new TodoItem('Get flowers'),
-    new TodoItem('Collect tickets'),
-  ]);
+  private list = new TodoList('Bob', []);  
   showComplete = false;
 
   ngOnInit() {
@@ -37,7 +33,8 @@ export class AppComponent implements OnInit{
 
   addItem(newItem: string) {
     if (newItem !== '') {
-      this.list.addItem(newItem);
+      const time = new Date();
+      this.list.addItem(newItem, time);
       localStorage.setItem('todoListData', JSON.stringify(this.list.items));
     }
   }

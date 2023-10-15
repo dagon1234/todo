@@ -11,8 +11,8 @@ export class TodoList {
     return this._items;
   }
 
-  addItem(task: string) {
-    this._items.push(new TodoItem(task));
+  addItem(task: string, time: Date) {
+    this._items.push(new TodoItem(task, false, time));
   }
 
   deleteItem(index: number) {
